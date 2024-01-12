@@ -3,15 +3,36 @@ import { RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }]
+    redirect: { name: 'AdminLogin' }
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
   {
-    path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue')
+    path: '/',
+    name: 'emptyLayout',
+    component: () => import('layouts/EmptyLayout.vue'),
+    children: [
+      {
+        path: 'adminLogin',
+        name: 'AdminLogin',
+        component: () => import('pages/AdminLogin.vue')
+      }
+    ]
+  },
+  {
+    path: '/',
+    name: 'defaultLayout',
+    component: () => import('layouts/DefaultLayout.vue'),
+    children: [
+      {
+        path: 'myHome',
+        name: 'MyHome',
+        component: () => import('pages/MyHome.vue')
+      },
+      {
+        path: 'testBar',
+        name: 'TestBar',
+        component: () => import('components/TestBar.vue')
+      }
+    ]
   }
 ]
 
