@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>여기는 홈</div>
+    <div>홈인딩</div>
   </div>
 </template>
 
